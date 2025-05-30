@@ -1,0 +1,12 @@
+# 스프링 부트 설정을 하는 파일 스프링 부트가 실행되면 자동으로 로딩되는 파일이다.
+# 데이터베이스의 설정 정보, 로깅 설정 정보 등이 들어갈 수 있고 직접 설정을 정의할 때 사용하기도 한다.
+spring:
+  jpa:
+    # 전송 쿼리 확인
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+    # 테이블 생성 후에 data.sql 실행
+    defer-datasource-initialization: true
