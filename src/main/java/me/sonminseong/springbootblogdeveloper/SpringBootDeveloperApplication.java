@@ -1,9 +1,9 @@
-package me.sonminseong.springbootdeveloper;
+package me.sonminseong.springbootblogdeveloper;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@SpringBootApplication
+@SpringBootApplication
 public class SpringBootDeveloperApplication {
     public static void main(String[] args){
         SpringApplication.run(SpringBootDeveloperApplication.class,args);
