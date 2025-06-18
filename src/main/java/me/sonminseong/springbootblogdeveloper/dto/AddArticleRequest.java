@@ -17,10 +17,11 @@ public class AddArticleRequest {
      * 추후에 블로그 글을 추가할 때 저장할 엔티티로 변환하는 용도로 사용
      * @return
      */
-    public Article toEntity(){ // 생성자를 사용해 객체 생성
+    public Article toEntity(String author){ // 생성자를 사용해 객체 생성
         return Article.builder()
                 .title(title)
                 .content(content)
+                .author(author)
                 .build();
     }
 }

@@ -34,6 +34,9 @@ public class Article {
     @Column(name = "updated_at")
     private LocalDateTime updateAt;
 
+    @Column(name = "author", nullable = false)
+    private String author;
+
     @Builder // 빌더 패턴으로 객체 생성
     /**
      * 생성자 위에 입력하면 빌더 패턴 방식으로 객체를 생성할 수 있어 편리
@@ -44,9 +47,10 @@ public class Article {
      * // 사용했을 때
      * Article.builder().title("abc").content("def").build();
      */
-    public Article(String title, String content){
+    public Article(String title, String content, String author){
         this.title = title;
         this.content = content;
+        this.author = author;
     }
 
     public void update(String title, String content){

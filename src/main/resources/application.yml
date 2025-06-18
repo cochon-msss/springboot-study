@@ -10,7 +10,16 @@ spring:
 
     # 테이블 생성 후에 data.sql 실행
     defer-datasource-initialization: true
-
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ''
+            client-secret: ''
+            scope:
+              - email
+              - profile
   datasource: # 데이터 베이스 정보 추가
     url: jdbc:h2:mem:testdb
     username: sa
