@@ -14,7 +14,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @RequiredArgsConstructor
-@Configuration
+//@Configuration
+// OAuth2와 JWT를 함께 사용하려면 기존 스프링 시큐리티를 구현하며 작성한 설정이 아니라
+// 다른 설정을 사용해야 함
 public class WebSecurityConfig {
 
     private final UserDetailService userService;
