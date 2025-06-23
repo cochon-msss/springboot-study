@@ -44,9 +44,9 @@ public class WebSecurityConfig {
          * 인증/인가 및 로그인, 로그아웃 관련 설정할 수 있다.
          */
         return http
-                .authorizeRequests() // 3.인증, 인가 설정 (특정 요청과 일치하는 url에 대한 엑세스를 설정한다.)
-                .requestMatchers("/login", "/signup", "/user").permitAll()
-                // permitAll: 누구나 접근이 가능하게 설정 즉, /login,/signup,/user로 요청이 오면 인증/인가 없이도 접근할 수 있다.
+                .authorizeRequests() // 3.인증, 인가 설정
+                .requestMatchers("/login", "/signup", "/user")// 특정 요청과 일치하는 url에 대한 엑세스를 설정한다.
+                .permitAll()// permitAll: 누구나 접근이 가능하게 설정 즉, /login,/signup,/user로 요청이 오면 인증/인가 없이도 접근할 수 있다.
                 .anyRequest() // 위에서 설정한 url이외의 요청에 대해서 설정한다.
                 .authenticated() // 별도의 인가는 필요하지 않지만 인증이 성공된 상태여야 접근할 수 있다.
                 .and()
@@ -69,8 +69,11 @@ public class WebSecurityConfig {
                                                        UserDetailService userDetailService) throws Exception{
         /**
          * 인증 관리자 관련 설정
+         * AuthenticationManager 설정
          * 사용자 정보를 가져올 서비스를 재정의하거나, 인증 방법, 예를들어
          * LDAP, JDBC 기반 인증 등을 설정할 때 사용한다.
+         * 로그인 요청이 들어오면 여길 제일 먼저 타네 기본 Authenticationmanager가 있지만
+         * spring은 bean으로 등록된 걸 우선적으로 사용한다.
          */
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userService) // 8.사용자 정보 서비스 설정
@@ -79,6 +82,14 @@ public class WebSecurityConfig {
                 // 비밀번호를 암호화하기 위한 인코더를 설정
                 .and()
                 .build();
+        // AuthenticationManagerbuilder는 AuthenticationManager를 만들기위해
+        // 어떤 인증 방을 사용할지 어떻게 사용자 정보를 검증할지 등을 설정하는 빌더 클래스
+        /**
+         * 1. AuthenticationManagerbuilder를 가져옴
+         * 2. 어떤 방식으로 사용자 정보를 조회할지 설정(userDetailsService)
+         * 3. 비밀번호는 어떤 방식으로 검증할지 설정
+         * 4. 설정 기반으로 최종 AuthenticationManager 객체 생성
+         */
     }
 
     // 9.패스워드 인코더로 사용할 빈 등록

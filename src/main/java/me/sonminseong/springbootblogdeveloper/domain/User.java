@@ -17,6 +17,11 @@ import java.util.List;
 @Getter
 @Entity
 public class User implements UserDetails { // UserDetails를 상속받아 인증 객체로 사용
+    /**
+     * UserDetails 클래스는
+     * 스프링 시큐리티에서 사용자의 인증 정보를 담아두는 인터페이스
+     * 스프링 시큐리티에서 해당 객체를 통해 인증 정보를 가져오려면 필수 오버라이드 메서드들을 여러개 사용해야 한다.
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
