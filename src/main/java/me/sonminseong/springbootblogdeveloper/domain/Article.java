@@ -23,7 +23,7 @@ public class Article {
     @Column(name = "title", nullable = false) // title 이라는 not null 컬럼과 매핑
     private String title;
 
-    @Column(name = "content",nullable = false)
+    @Column(name = "content",nullable = false) // nullable = false > notNull이라는 소리
     private String content;
 
     @CreatedDate // 엔티티가 생성될 때 생성 시간 저장
