@@ -16,9 +16,13 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor // final이 붙은 변수 생성자 생성
 @Service
 public class TokenProvider {
+    /**
+     * 토큰을 생성하고 올바른 토큰인지 유효성 검사
+     * 토큰에서 필요한 정보를 가져오는 클래스
+     */
 
     private final JwtProperties jwtProperties;
 
