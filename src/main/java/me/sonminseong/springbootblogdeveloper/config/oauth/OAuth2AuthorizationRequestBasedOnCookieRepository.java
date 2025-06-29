@@ -9,7 +9,10 @@ import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequ
 import org.springframework.web.util.WebUtils;
 
 public class OAuth2AuthorizationRequestBasedOnCookieRepository implements AuthorizationRequestRepository<OAuth2AuthorizationRequest> {
-
+    /**
+     * OAuth2에 필요한 정보를 세션이 아닌 쿠키에 저장해서 쓸 수 있도록 인증 요청과 관련된 상태를 저장할 저장소
+     * 권한 인증 흐름에서 클라이언트의 요청을 유지하는 데 사용하는 AuthorizationReqeustRepository클래스를 구현
+     */
     public final static String OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME = "auth2_auth_request";
     private final static int COOKIE_EXPIRE_SECONDS = 18000;
 

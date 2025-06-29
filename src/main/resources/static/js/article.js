@@ -131,6 +131,16 @@ function getCookie(key){
 }
 
 // http 요청을 보내는 함수
+/**
+ * post 요청을 보낼 때 액세스 토큰도 함께 보낸다.
+ * 만약 응답에 권한이 없다는 에러 코드가 발생하면 리프레시 토큰과 함께 새로운 액세스 토큰을 요청하고
+ * 전달받은 액세스 토큰으로 다시 API를 요청한다.
+ * @param method
+ * @param url
+ * @param body
+ * @param success
+ * @param fail
+ */
 function httpRequest(method, url, body, success, fail){
     fetch(url,{
         method: method,

@@ -21,6 +21,11 @@ import java.time.Duration;
 @RequiredArgsConstructor
 @Component
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+    /**
+     * 스프링 시큐리티의 기본 로직에서는 별도의 authenticationSuccessHandler를 지정하지 않으면 로그인 성공 이후
+     * SimpleUrlAuthenticationSuccessHandler를 사용한다.
+     * 일반적으로 로직은 동잏라게 사용하고, 토큰과 관련된 작업만 추가로 처리하기위해 onAuthenticationSuccess() 메서드 오버라이드
+     */
     public static final String REFRESH_TOKEN_COOKIE_NAME = "refresh_token";
     public static final Duration REFRESH_TOKEN_DURATION = Duration.ofDays(14);
     public static final Duration ACCESS_TOKEN_DURATION = Duration.ofDays(1);

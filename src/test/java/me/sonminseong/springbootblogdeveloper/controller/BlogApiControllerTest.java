@@ -40,6 +40,7 @@ class BlogApiControllerTest {
     @Autowired
     BlogRepository blogRepository;
 
+
     @BeforeEach // 테스트 실행 전 실행하는 메서드
     public void mockMvcSetUp(){
         this.mockMvc = MockMvcBuilders.webAppContextSetup(context)
