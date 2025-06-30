@@ -2,6 +2,7 @@ package me.sonminseong.springbootblogdeveloper.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
+import me.sonminseong.springbootblogdeveloper.config.error.ErrorCode;
 import me.sonminseong.springbootblogdeveloper.domain.Article;
 import me.sonminseong.springbootblogdeveloper.domain.User;
 import me.sonminseong.springbootblogdeveloper.dto.AddArticleRequest;
@@ -30,6 +31,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -246,6 +248,23 @@ class BlogApiControllerTest {
 
         //then
         resultActions.andExpect(status().isBadRequest());
+    }
+
+
+    @DisplayName("findArticle: 잘못된 HTTP 메서드로 아티클을 조회하려고 하면 조회에 실패한다.")
+    @Test
+    public void invalidHttpMethod() throws Exception{
+        // given
+        final String url = "/api/articles/{id}";
+
+        //when
+        final ResultActions resultActions = mockMvc.perform(post(url,1));
+
+        // then
+        resultActions
+                .andDo(print())
+                .andExpect(status().isMethodNotAllowed())
+                .andExpect(jsonPath("$.message").value(ErrorCode.METHOD_NOT_ALLOWED.getMessage()));
     }
 
 }
